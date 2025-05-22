@@ -1,0 +1,127 @@
+[
+  {
+    "start": "00:00:22,719",
+    "end": "00:01:24,435",
+    "transcript": "Greetings, my friend. We are all interested in the future, for that is where you and I are going to spend the rest of our lives. And remember my friend, future events such as these will affect you in the future. You are interested in the unknown, the mysterious, the unexplainable. That is why you are here. And now, for the first time, we are bringing to you the full story of what happened on that fateful day. We are giving you all the evidence, based only on the secret testimony of the miserable souls who survived this terrifying ordeal. The incidents, the places, my friend we cannot keep this a secret any longer. Let us punish the guilty, let us reward the innocent. My friend, can your heart stand the shocking facts about grave robbers from outer space?",
+    "summary": "A narrator introduces a story about future events and mysterious occurrences, inviting the audience to learn about grave robbers from outer space.",
+    "characters": [
+      "narrator",
+      "you"
+    ],
+    "mood": "curiosity",
+    "cultural_refs": [
+      "Orson Welles' War of the Worlds radio broadcast"
+    ]
+  },
+  {
+    "start": "00:02:45,849",
+    "end": "00:03:28,272",
+    "transcript": "All of us on this earth, know that there is a time to live, and that there is a time to die, yet death is always a shock to those left behind. It is even more of a shock, when death, the proud brother, comes suddenly without warning. Just at sundown, a small group, gathered in silent prayer around the newly-opened grave of the beloved wife of an elderly man. Sundown of the day, yet also the sundown of the old man's heart, for the shadows of grief clouded his very reason.",
+    "summary": "A group gathers in silent prayer around the grave of an elderly man's deceased wife at sundown.",
+    "characters": [
+      "the elderly man",
+      "his deceased wife"
+    ],
+    "mood": "grief",
+    "cultural_refs": [
+      "biblical quote about time to live and die"
+    ]
+  },
+  {
+    "start": "00:03:40,899",
+    "end": "00:03:44,939",
+    "transcript": "The funeral over, the saddened group left the graveside.",
+    "summary": "The group leaves a funeral",
+    "characters": [
+      "group"
+    ],
+    "mood": "sadness",
+    "cultural_refs": []
+  },
+  {
+    "start": "00:04:08,979",
+    "end": "00:04:53,221",
+    "transcript": "It was when the gravediggers started their task that strange things began to take place. Fifteen to four. Yup, right on schedule. There's the ol' San Fernando Valley out there now. -You better radio in for landing instructions, Danny. -Right, Jeff. Burbank Tower, this is American Flight 812, over. Wouldn't surprise me any if  he's asleep this time of the morning. American Flight 812, this is Burbank Tower. If I were asleep you'd never get on the ground! Your case maybe you'd be up there for good. Over. You got me that time, Mac. This American Flight 812 requesting -",
+    "summary": "Gravediggers start working, airplane crew communicates with air traffic control",
+    "characters": [
+      "gravediggers",
+      "Danny",
+      "Jeff",
+      "Mac"
+    ],
+    "mood": "lighthearted",
+    "cultural_refs": []
+  },
+  {
+    "start": "00:04:59,888",
+    "end": "00:05:43,523",
+    "transcript": "Burbank Tower to American Flight 812, over. Burbank Tower to American Flight 812, over. Holy mackeral. -Burbank Tower to American Flight 812, are you in trouble? -Trouble ? -Take a look for yourself. -What in the world... -That's nothing from this world. Burbank Tower to American Flight 812, are you in trouble? Are you in trouble? -Mayday, mayday. Stand by, Burbank Tower. -Do you suppose the passengers saw it? I doubt it. Most of them are asleep. But it was quite a jolt, Jeff. I'll check. Good. We'll get them ready for landing. Keep it quiet until we get instructions. -Right. -American Flight 812 reporting to Burbank Tower, over.",
+    "summary": "Burbank Tower receives a mayday call from American Flight 812, which experienced a jolt due to an unidentified object.",
+    "characters": [
+      "Burbank Tower",
+      "American Flight 812",
+      "Jeff"
+    ],
+    "mood": "anxious",
+    "cultural_refs": []
+  },
+  {
+    "start": "00:06:04,666",
+    "end": "00:06:28,169",
+    "transcript": "(buzzing noise) -D'you hear anything ? -I thought I did. Don't like hearin' noises. 'Specially when there ain't s'posed to be any. -Yeah, sorta spooky-like. -Maybe we're getting' old. -Whatever it is it's gone now. -That's the best thing for us too. Gone. -Yeah, let's go.",
+    "summary": "Two characters hear a mysterious noise and are relieved when it's gone",
+    "characters": [
+      "D'you hear anything",
+      "I thought I did",
+      "we're getting' old"
+    ],
+    "mood": "nervous",
+    "cultural_refs": []
+  },
+  {
+    "start": "00:06:53,440",
+    "end": "00:06:55,234",
+    "transcript": "(The two men scream.)",
+    "summary": "Two men are screaming.",
+    "characters": [
+      "two men"
+    ],
+    "mood": "chaos",
+    "cultural_refs": []
+  },
+  {
+    "start": "00:07:02,007",
+    "end": "00:07:09,280",
+    "transcript": "The grief of his wife's death became greater and greater agony.",
+    "summary": "Husband's grief over his wife's death intensifies.",
+    "characters": [
+      "husband",
+      "wife"
+    ],
+    "mood": "grief, agony",
+    "cultural_refs": []
+  },
+  {
+    "start": "00:07:14,229",
+    "end": "00:07:30,492",
+    "transcript": "The home they had so long shared together, became a tomb. A sweet memory of her joyous living. The sky to which she had once looked, was now only a covering for her dead body.",
+    "summary": "The house is described as a tomb after someone's death, with a focus on her joyful life and the sky as her resting place.",
+    "characters": [
+      "she"
+    ],
+    "mood": "sadness, nostalgia",
+    "cultural_refs": []
+  },
+  {
+    "start": "00:07:45,946",
+    "end": "00:07:55,340",
+    "transcript": "The ever-beautiful flowers she had planted with her own hands, became nothing more than the lost roses of her cheeks.",
+    "summary": "A woman's once-vibrant flowers now resemble her faded complexion.",
+    "characters": [],
+    "mood": "melancholic",
+    "cultural_refs": [
+      "lost roses of her cheeks",
+      "ever-beautiful flowers"
+    ]
+  }
+]
