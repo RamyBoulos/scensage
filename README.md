@@ -87,3 +87,41 @@ for that is where you and I are going to spend the rest of our lives.
 
 ### 📤 Sample output (`scenes.json`):
 ```json
+[
+  {
+    "start": "00:00:22,719",
+    "end": "00:00:31,507",
+    "transcript": "Greetings, my friend. We are all interested in the future, for that is where you and I are going to spend the rest of our lives.",
+    "summary": "The narrator reflects on humanity's fascination with the future.",
+    "characters": ["Narrator"],
+    "mood": "dramatic",
+    "cultural_refs": []
+  }
+]
+```
+
+---
+
+## 📂 Subtitle Test File
+
+You can test using a public-domain subtitle file:
+
+➡ [Plan 9 from Outer Space (1959) – .srt file](https://commons.wikimedia.org/wiki/TimedText:Plan_9_from_Outer_Space_(1959).webm.en.srt)
+
+To limit to first 300 cues:
+```bash
+awk 'BEGIN{RS=""; FS="\n"} NR<=300 {print $0 "\n"}' plan9.srt > clip.srt
+```
+
+---
+
+## 📄 License
+
+This project is licensed under the [MIT License](LICENSE).
+
+---
+
+## 🙏 Acknowledgements
+
+- Subtitle: [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Plan_9_from_Outer_Space_(1959).webm)
+- LLM: [Hugging Face Inference API](https://huggingface.co/inference-api)
