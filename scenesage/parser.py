@@ -42,10 +42,7 @@ def parse_srt_file(source: str) -> List[Dict]:
 
 
 # --- Scene segmentation utilities ---
-from datetime import datetime
-
-def parse_srt_timestamp(ts: str) -> datetime:
-    return datetime.strptime(ts, "%H:%M:%S,%f")
+from .utils import parse_srt_timestamp
 
 def segment_into_scenes(subs: List[Dict], min_gap_seconds: int = 4, mode: str = "llm", llm_segmenter=None) -> List[Dict]:
     """

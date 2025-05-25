@@ -1,4 +1,3 @@
-
 ###############################################################################
 #                          SceneSage Project - Makefile                      #
 ###############################################################################
@@ -20,7 +19,7 @@ run:
 	USE_LOCAL=$${USE_LOCAL:-none} python3 -m scenesage.scenesage $(SRT) --limit $(LIMIT) --output $(OUT) --model $(MODEL)
 
 # ===[ SHORTCUTS: LOCAL/HF RUNS ]=============================================
-.PHONY: hf-run mistral-run
+.PHONY: hf-run mistral-gap mistral-llm mistral-run
 hf-run:   # Run with Hugging Face API (default; USE_LOCAL=none)
 	USE_LOCAL=none $(MAKE) run
 
@@ -35,11 +34,11 @@ run-llm:   # LLM segmentation, HF inference
 run-gap:   # GAP segmentation, HF inference
 	USE_LOCAL=none python3 -m scenesage.scenesage $(SRT) --limit $(LIMIT) --output $(OUT) --strategy gap --model $(MODEL)
 
-.PHONY: mistral-run-llm mistral-run-gap
-mistral-run-llm:   # LLM segmentation, local Mistral
+.PHONY: mistral-gap mistral-llm
+mistral-llm:   # LLM segmentation, local Mistral
 	USE_LOCAL=mistral python3 -m scenesage.scenesage $(SRT) --limit $(LIMIT) --output $(OUT) --strategy llm --model $(MODEL)
 
-mistral-run-gap:   # GAP segmentation, local Mistral
+mistral-gap:   # GAP segmentation, local Mistral
 	USE_LOCAL=mistral python3 -m scenesage.scenesage $(SRT) --limit $(LIMIT) --output $(OUT) --strategy gap --model $(MODEL)
 
 # ===[ DOCKER WORKFLOWS ]=====================================================
@@ -67,8 +66,8 @@ help:
 	@echo ""
 	@echo "  make run-llm              Run SceneSage with LLM segmentation (HF API)"
 	@echo "  make run-gap              Run SceneSage with GAP segmentation (HF API)"
-	@echo "  make mistral-run-llm      Run with LLM segmentation and local Mistral"
-	@echo "  make mistral-run-gap      Run with GAP segmentation and local Mistral"
+	@echo "  make mistral-llm          Run with LLM segmentation and local Mistral"
+	@echo "  make mistral-gap          Run with GAP segmentation and local Mistral"
 	@echo ""
 	@echo "  make docker-build         Build Docker image"
 	@echo "  make docker-mistral-run   Run in Docker with Mistral/Ollama (host Ollama required)"
