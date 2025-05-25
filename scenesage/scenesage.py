@@ -16,13 +16,19 @@ def main():
     )
     parser.add_argument("--output", default="scenes.json", help="Path to the output JSON file")
     parser.add_argument("--limit", type=int, help="Limit the number of scenes to process (optional)")
+    parser.add_argument(
+        "--strategy",
+        default="llm",
+        choices=["llm", "gap"],
+        help="Scene segmentation strategy: 'llm' for LLM-based or 'gap' for time-based"
+    )
 
     args = parser.parse_args()
 
     print(f"Parsing subtitle file: {args.srt_file}")
     subs = parse_srt_file(args.srt_file)
 
-    segmentation_mode = "llm"
+    segmentation_mode = args.strategy
     print(f"[INFO] Scene segmentation mode: {segmentation_mode}")
 
     print("Segmenting into scenes...")

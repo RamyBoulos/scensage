@@ -1,48 +1,89 @@
-.PHONY: test run hf-run mistral-run docker-build docker-mistral-run docker-hf-run help
 
-SRT=tests/data/plan9.srt
-LIMIT=20
-OUT=scenes.json
+###############################################################################
+#                          SceneSage Project - Makefile                      #
+###############################################################################
 
-# Run all unit tests with correct PYTHONPATH
+# ===[ CONFIGURATION VARIABLES ]==============================================
+SRT        := tests/data/plan9.srt
+LIMIT      := 20
+OUT        := scenes.json
+MODEL      := mistralai/Mixtral-8x7B-Instruct-v0.1
+
+# ===[ TESTING & QUALITY ]====================================================
+.PHONY: test
 test:
 	PYTHONPATH=. pytest
 
-# Run the SceneSage CLI tool with a default limit of 20 scenes
-# The model used is determined by the USE_LOCAL environment variable
+# ===[ LOCAL EXECUTION ]======================================================
+.PHONY: run
 run:
-	USE_LOCAL=$(USE_LOCAL) python3 -m scenesage.scenesage $(SRT) --limit $(LIMIT) --output $(OUT)
+	USE_LOCAL=$${USE_LOCAL:-none} python3 -m scenesage.scenesage $(SRT) --limit $(LIMIT) --output $(OUT) --model $(MODEL)
 
-# Run SceneSage using Hugging Face API (default if USE_LOCAL is not set)
-hf-run:
+# ===[ SHORTCUTS: LOCAL/HF RUNS ]=============================================
+.PHONY: hf-run mistral-run
+hf-run:   # Run with Hugging Face API (default; USE_LOCAL=none)
 	USE_LOCAL=none $(MAKE) run
 
-# Run SceneSage locally using the Mistral model
-mistral-run:
+mistral-run:   # Run with local Mistral via Ollama (USE_LOCAL=mistral)
 	USE_LOCAL=mistral $(MAKE) run
 
-# Build the Docker image
-docker-build:
+# ===[ ADVANCED: SEGMENTATION STRATEGIES ]====================================
+.PHONY: run-llm run-gap
+run-llm:   # LLM segmentation, HF inference
+	USE_LOCAL=none python3 -m scenesage.scenesage $(SRT) --limit $(LIMIT) --output $(OUT) --strategy llm --model $(MODEL)
+
+run-gap:   # GAP segmentation, HF inference
+	USE_LOCAL=none python3 -m scenesage.scenesage $(SRT) --limit $(LIMIT) --output $(OUT) --strategy gap --model $(MODEL)
+
+.PHONY: mistral-run-llm mistral-run-gap
+mistral-run-llm:   # LLM segmentation, local Mistral
+	USE_LOCAL=mistral python3 -m scenesage.scenesage $(SRT) --limit $(LIMIT) --output $(OUT) --strategy llm --model $(MODEL)
+
+mistral-run-gap:   # GAP segmentation, local Mistral
+	USE_LOCAL=mistral python3 -m scenesage.scenesage $(SRT) --limit $(LIMIT) --output $(OUT) --strategy gap --model $(MODEL)
+
+# ===[ DOCKER WORKFLOWS ]=====================================================
+.PHONY: docker-build docker-mistral-run docker-hf-run
+docker-build:    # Build Docker image
 	docker build -t scenesage .
 
-# Run SceneSage in Docker using Mistral via Ollama
-docker-mistral-run:
-	docker run --rm -v $(shell pwd):/app -w /app -e USE_LOCAL=mistral scenesage python3 -m scenesage.scenesage $(SRT) --limit $(LIMIT) --output $(OUT)
+docker-mistral-run:    # Run in Docker with local Mistral (Ollama must be running outside Docker)
+	docker run --rm -v $(shell pwd):/app -w /app -e USE_LOCAL=mistral scenesage python3 -m scenesage.scenesage $(SRT) --limit $(LIMIT) --output $(OUT) --model $(MODEL)
 
-# Run SceneSage in Docker using Hugging Face API
-docker-hf-run:
-	docker run --rm -v $(shell pwd):/app -w /app -e USE_LOCAL=none scenesage python3 -m scenesage.scenesage $(SRT) --limit $(LIMIT) --output $(OUT)
+docker-hf-run:    # Run in Docker with Hugging Face API
+	docker run --rm -v $(shell pwd):/app -w /app -e USE_LOCAL=none scenesage python3 -m scenesage.scenesage $(SRT) --limit $(LIMIT) --output $(OUT) --model $(MODEL)
 
+# ===[ HELP ]==================================================================
+.PHONY: help
 help:
-	@echo "Usage:"
-	@echo "  make test                  Run unit tests"
-	@echo "  make run                   Run SceneSage locally (uses Ollama if USE_LOCAL=mistral, or Hugging Face API if USE_LOCAL=none)"
-	@echo "  make hf-run                Run SceneSage locally with Hugging Face API"
-	@echo "  make mistral-run           Run SceneSage locally with Mistral via Ollama"
-	@echo "  make docker-build          Build the Docker image"
-	@echo "  make docker-mistral-run    Run in Docker with Mistral via Ollama (local model, Ollama server required outside Docker)"
-	@echo "  make docker-hf-run         Run in Docker with Hugging Face API (no Ollama needed)"
+	@echo "=========================="
+	@echo "   SceneSage Makefile Help"
+	@echo "=========================="
 	@echo ""
-	@echo "Notes:"
-	@echo "  - For Docker Mistral runs, make sure Ollama is running on your host machine (not inside the container)."
-	@echo "  - USE_LOCAL=mistral enables local inference via Ollama; USE_LOCAL=none (or unset) uses Hugging Face API."
+	@echo "  make test                 Run unit tests"
+	@echo "  make run                  Run SceneSage with selected model (set USE_LOCAL and MODEL as needed)"
+	@echo "  make hf-run               Run SceneSage with Hugging Face API (default)"
+	@echo "  make mistral-run          Run SceneSage locally with Mistral via Ollama"
+	@echo ""
+	@echo "  make run-llm              Run SceneSage with LLM segmentation (HF API)"
+	@echo "  make run-gap              Run SceneSage with GAP segmentation (HF API)"
+	@echo "  make mistral-run-llm      Run with LLM segmentation and local Mistral"
+	@echo "  make mistral-run-gap      Run with GAP segmentation and local Mistral"
+	@echo ""
+	@echo "  make docker-build         Build Docker image"
+	@echo "  make docker-mistral-run   Run in Docker with Mistral/Ollama (host Ollama required)"
+	@echo "  make docker-hf-run        Run in Docker with Hugging Face API"
+	@echo ""
+	@echo "Variables:"
+	@echo "  SRT     Path to SRT file [$(SRT)]"
+	@echo "  LIMIT   Number of scenes to process [$(LIMIT)]"
+	@echo "  OUT     Output file [$(OUT)]"
+	@echo "  MODEL   Model for annotation [$(MODEL)]"
+	@echo ""
+	@echo "Set USE_LOCAL=mistral to use local Ollama, or USE_LOCAL=none (default) for Hugging Face API."
+	@echo ""
+	@echo "Examples:"
+	@echo "  make run MODEL=mistralai/Mixtral-8x7B-Instruct-v0.1"
+	@echo "  make run-llm LIMIT=5 OUT=result.json"
+	@echo ""
+	@echo "Enjoy SceneSage!"
