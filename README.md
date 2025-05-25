@@ -22,7 +22,7 @@
 ## Features
 
 - Parses `.srt` subtitle files with robust handling of common formats  
-- Supports multiple scene segmentation strategies: time gaps, fixed cue counts, and scene change detection  
+- Supports two scene segmentation strategies: LLM-based (`llm`) and time gap-based (`gap`)  
 - Integrates with Hugging Face Inference API for LLM-powered scene annotation  
 - Outputs structured JSON annotations including:  
   - Scene start and end timestamps  
@@ -31,7 +31,7 @@
   - Character mentions  
   - Mood/emotion analysis  
   - Up to three cultural references  
-- CLI interface with options for model selection, scene limits, segmentation method, and output file specification  
+- CLI interface with options for model selection, scene limits, segmentation strategy, and output file specification  
 - Designed for extensibility and ease of integration into media analysis pipelines  
 
 ---
@@ -40,16 +40,13 @@
 
 SceneSage supports flexible scene segmentation to adapt to different types of subtitle files and user needs:
 
-- **Time Gap Segmentation (`timegap`)**  
+- **LLM-based Segmentation (`llm`)** (default)  
+  Scenes are segmented using a large language model that analyzes subtitle content to determine scene boundaries.
+
+- **Time Gap Segmentation (`gap`)**  
   Scenes are segmented when there is a gap equal to or greater than a specified threshold (default: 4 seconds) between subtitle cues.
 
-- **Fixed Cue Count Segmentation (`fixedcount`)**  
-  Scenes are segmented by grouping a fixed number of subtitle cues (e.g., every 10 cues).
-
-- **Scene Change Detection (`scenechange`)**  
-  (Experimental) Attempts to detect scene changes based on subtitle content or metadata.
-
-You can select the segmentation method with the `--segment` flag and customize parameters such as the time gap threshold or cue count.
+You can select the segmentation strategy with the `--strategy` flag and customize parameters such as the time gap threshold.
 
 ---
 
@@ -117,23 +114,22 @@ python scenesage.py your_subtitle_file.srt --output scenes.json
 |------------------|-----------------------------------------------------------|----------------------------------|
 | `--model`        | Hugging Face model to use                                  | `mistralai/Mixtral-8x7B-Instruct-v0.1` |
 | `--limit`        | Process only the first N scenes (for testing)             | Process all                      |
-| `--segment`      | Scene segmentation method: `timegap`, `fixedcount`, `scenechange` | `timegap`                      |
-| `--gap`          | Time gap threshold in seconds for `timegap` segmentation  | `4` seconds                     |
-| `--count`        | Number of cues per scene for `fixedcount` segmentation    | `10` cues                      |
+| `--strategy`     | Scene segmentation strategy: `llm` (default), `gap`       | `llm`                           |
+| `--gap`          | Time gap threshold in seconds for `gap` segmentation      | `4` seconds                     |
 | `--output`       | Output JSON file path                                      | `scenes.json`                   |
 
 ### Example
 
-Process the first 10 scenes from `plan9.srt` using the default model and time gap segmentation:
+Process the first 10 scenes from `plan9.srt` using the default LLM-based segmentation:
 
 ```bash
 python scenesage.py plan9.srt --limit 10 --output scenes.json
 ```
 
-Use fixed cue count segmentation with 15 cues per scene:
+Use time gap segmentation with a 6-second gap threshold:
 
 ```bash
-python scenesage.py plan9.srt --segment fixedcount --count 15 --output scenes.json
+python scenesage.py plan9.srt --strategy gap --gap 6 --output scenes.json
 ```
 
 Specify a different model:
