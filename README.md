@@ -1,217 +1,149 @@
-# SceneSage 🎬
 
-**SceneSage** is a powerful command-line interface (CLI) tool designed to automate scene analysis from `.srt` subtitle files using large language models (LLMs). It parses subtitle files, segments scenes based on customizable strategies, and generates detailed, structured annotations for each scene—such as summaries, character mentions, emotional tone, and cultural references—via the Hugging Face Inference API.
 
----
+# SceneSage
 
-## Table of Contents
+**SceneSage** is a Python-based command-line tool for enriching video subtitles with AI-generated scene annotations. It processes `.srt` subtitle files, segments them into scenes, and uses Large Language Models (LLMs) to annotate each scene with a summary, characters, mood, and cultural references.
 
-- [Features](#features)  
-- [Scene Segmentation Strategies](#scene-segmentation-strategies)  
-- [Inference Modes](#inference-modes)  
-- [Installation](#installation)  
-- [Setup](#setup)  
-- [Usage](#usage)  
-- [Makefile Shortcuts](#makefile-shortcuts)  
-- [Output Examples](#output-examples)  
-- [License](#license)  
-- [Acknowledgments](#acknowledgments)  
+Supports both remote inference via Hugging Face API (default) and local inference using the Mistral 7B model via Ollama.
+
+Repository: [github.com/RamyBoulos/scensage](https://github.com/RamyBoulos/scensage)
 
 ---
 
 ## Features
 
-- Parses `.srt` subtitle files with robust handling of common formats  
-- Supports two scene segmentation strategies: LLM-based (`llm`) and time gap-based (`gap`)  
-- Integrates with Hugging Face Inference API for LLM-powered scene annotation  
-- Outputs structured JSON annotations including:  
-  - Scene start and end timestamps  
-  - Concatenated transcript text  
-  - One-sentence summary  
-  - Character mentions  
-  - Mood/emotion analysis  
-  - Up to three cultural references  
-- CLI interface with options for model selection, scene limits, segmentation strategy, and output file specification  
-- Designed for extensibility and ease of integration into media analysis pipelines  
-
----
-
-## Scene Segmentation Strategies
-
-SceneSage supports flexible scene segmentation to adapt to different types of subtitle files and user needs:
-
-- **LLM-based Segmentation (`llm`)** (default)  
-  Scenes are segmented using a large language model that analyzes subtitle content to determine scene boundaries.
-
-- **Time Gap Segmentation (`gap`)**  
-  Scenes are segmented when there is a gap equal to or greater than a specified threshold (default: 4 seconds) between subtitle cues.
-
-You can select the segmentation strategy with the `--strategy` flag and customize parameters such as the time gap threshold.
-
----
-
-## Inference Modes
-
-SceneSage supports different inference modes to balance speed and quality:
-
-- **Streaming Mode**  
-  Processes scenes sequentially and streams partial results for faster feedback.
-
-- **Batch Mode**  
-  Processes all scenes in a single batch request for efficiency.
-
-Currently, streaming mode is the default and recommended for most use cases.
+- 🎬 **Scene Segmentation** – Groups subtitles into coherent scenes using LLM or time-gap strategy.
+- 🤖 **LLM Annotation** – Adds summaries, character info, mood, and cultural references to each scene.
+- 🔌 **Hugging Face & Ollama** – Use Hugging Face models (default) or local Mistral via Ollama.
+- 🐳 **Docker Support** – Run SceneSage in a containerized environment.
+- 🛠️ **Makefile Shortcuts** – Convenient commands for testing and running locally or in Docker.
 
 ---
 
 ## Installation
 
-Clone the repository and install dependencies:
+### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/RamyBoulos/scenesage.git
-cd scenesage
+git clone https://github.com/RamyBoulos/scensage.git
+cd scensage
+```
 
-# (Optional) Create and activate a virtual environment
-python -m venv .venv
-source .venv/bin/activate
+### 2. Install Python Dependencies
 
-# Install required packages
+```bash
 pip install -r requirements.txt
 ```
 
----
-
-## Setup
-
-### Hugging Face API Token
-
-SceneSage requires a Hugging Face Inference API token to access language models:
-
-1. Create a `.env` file in the project root directory with the following content:
-
-   ```
-   HUGGINGFACEHUB_API_TOKEN=your_token_here
-   ```
-
-2. Obtain your token from [Hugging Face Tokens Page](https://huggingface.co/settings/tokens).
-
-3. Ensure you have access to a text-generation capable model, such as `mistralai/Mixtral-8x7B-Instruct-v0.1`.
+> **Note**: This does not install a CLI command globally. Run via `python3 -m scenesage.scenesage` or use the Makefile/Docker.
 
 ---
 
 ## Usage
 
-### Basic Command
+### 🔧 Set Up Environment Variables
+
+- For Hugging Face API:
 
 ```bash
-python scenesage.py your_subtitle_file.srt --output scenes.json
+export HUGGINGFACEHUB_API_TOKEN=your_hf_token
+export USE_LOCAL=none
 ```
 
-### Common Options
-
-| Option           | Description                                               | Default                            |
-|------------------|-----------------------------------------------------------|----------------------------------|
-| `--model`        | Hugging Face model to use                                  | `mistralai/Mixtral-8x7B-Instruct-v0.1` |
-| `--limit`        | Process only the first N scenes (for testing)             | Process all                      |
-| `--strategy`     | Scene segmentation strategy: `llm` (default), `gap`       | `llm`                           |
-| `--gap`          | Time gap threshold in seconds for `gap` segmentation      | `4` seconds                     |
-| `--output`       | Output JSON file path                                      | `scenes.json`                   |
-
-### Example
-
-Process the first 10 scenes from `plan9.srt` using the default LLM-based segmentation:
+- For local Ollama inference:
 
 ```bash
-python scenesage.py plan9.srt --limit 10 --output scenes.json
-```
-
-Use time gap segmentation with a 6-second gap threshold:
-
-```bash
-python scenesage.py plan9.srt --strategy gap --gap 6 --output scenes.json
-```
-
-Specify a different model:
-
-```bash
-python scenesage.py plan9.srt --model google/flan-t5-large --output scenes.json
+export USE_LOCAL=mistral
+ollama run mistral  # Make sure Mistral is pulled and running
 ```
 
 ---
 
-## Makefile Shortcuts
+### ▶️ Command-Line Example
 
-If you prefer using `make`, the following shortcuts are available:
-
-- **Run analysis on sample clip:**
-
-  ```bash
-  make run
-  ```
-
-- **Run analysis with first 10 scenes:**
-
-  ```bash
-  make run-limit
-  ```
-
-- **Clean output files:**
-
-  ```bash
-  make clean
-  ```
+```bash
+python3 -m scenesage.scenesage path/to/input.srt --output scenes.json --model mistralai/Mixtral-8x7B-Instruct-v0.1
+```
 
 ---
 
-## Output Examples
+### 🛠️ Makefile Shortcuts
 
-Below are sample outputs generated by SceneSage for a subtitle excerpt.
+The Makefile includes convenient commands for different use cases.
 
-### Input Subtitle Excerpt (`clip.srt`):
+#### Run with Hugging Face API (default)
 
-```
-1
-00:00:22,719 --> 00:00:26,759
-Greetings, my friend. We are all interested in the future,
-
-2
-00:00:26,860 --> 00:00:31,507
-for that is where you and I are going to spend the rest of our lives.
+```bash
+make hf-run
 ```
 
-### Corresponding JSON Output (`scenes.json`):
+#### Run with local Mistral via Ollama
 
-```json
-[
-  {
-    "start": "00:00:22,719",
-    "end": "00:00:31,507",
-    "transcript": "Greetings, my friend. We are all interested in the future, for that is where you and I are going to spend the rest of our lives.",
-    "summary": "The narrator reflects on humanity's fascination with the future.",
-    "characters": ["Narrator"],
-    "mood": "thoughtful",
-    "cultural_refs": []
-  }
-]
+```bash
+make mistral-run
 ```
 
-*Note:* Your actual output may vary depending on the model and parameters used.
+#### Segmentation strategies
+
+```bash
+make run-llm         # LLM-based segmentation with HF
+make run-gap         # Time-gap segmentation with HF
+make mistral-llm     # LLM segmentation + local Mistral
+make mistral-gap     # GAP segmentation + local Mistral
+```
+
+---
+
+### 🐳 Docker Usage
+
+#### Build Docker Image
+
+```bash
+make docker-build
+```
+
+#### Run with Hugging Face
+
+```bash
+make docker-hf-run
+```
+
+#### Run with local Mistral (Ollama must be running on host)
+
+```bash
+make docker-mistral-run
+```
+
+> The Docker container communicates with the Ollama host at `host.docker.internal`. You must have Mistral running via Ollama **outside Docker**.
+
+---
+
+## File Structure
+
+```
+scenesage/
+├── scenesage/             # Core source code
+│   ├── scenesage.py       # CLI entry point
+│   ├── annotator.py       # LLM scene annotation
+│   ├── parser.py          # SRT parsing and scene segmentation
+│   ├── utils.py           # Timestamp parsing, JSON extraction
+│   └── ...
+├── tests/                 # Unit tests
+├── Dockerfile             # Docker config
+├── Makefile               # Run shortcuts
+├── requirements.txt       # Python dependencies
+└── README.md              # This file
+```
 
 ---
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE).
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
 ---
 
-## Acknowledgments
+## Author
 
-- Subtitle data courtesy of [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Plan_9_from_Outer_Space_(1959).webm)  
-- Language model inference via [Hugging Face Inference API](https://huggingface.co/inference-api)  
-- Inspired by the need for automated media analysis and annotation tools  
-
----
-
-Thank you for using SceneSage! If you have any questions or feedback, please open an issue or submit a pull request on GitHub.
+**Ramy Boulos**  
+[github.com/RamyBoulos](https://github.com/RamyBoulos)
