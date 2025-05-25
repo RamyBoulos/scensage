@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+*.pyo
+*.log
+.env
+*.srt
+scenes.json
+.idea/
+.vscode/
+tests/__pycache__/
+__snapshots__/

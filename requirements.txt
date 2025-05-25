@@ -1,6 +1,8 @@
-python-dotenv
-huggingface_hub
-requests
-pytest
-tqdm
-rich
+python-dotenv       # Load environment variables from .env file
+huggingface_hub     # Interface with Hugging Face models and APIs
+requests            # HTTP requests (used for downloading or web access)
+pytest              # Unit testing framework
+tqdm                # Progress bars in CLI
+rich                # Pretty printing and enhanced CLI output
+transformers        # Required for local LLM inference via Hugging Face
+torch               # Backend for Transformers (PyTorch engine)
