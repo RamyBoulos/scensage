@@ -5,45 +5,7 @@ import json
 import re
 from .local_annotator import analyze_scene_locally
 from .local_mistral import analyze_scene_with_mistral
-
-def extract_json_block(response: str) -> dict:
-    """
-    Extracts the first JSON object or a specifically labeled output block from a messy LLM response.
-    Returns a parsed dict or a fallback with empty fields.
-    Attempts to recover from malformed JSON by trimming to last closing brace.
-    """
-    try:
-        # Look for output = {...} or any JSON-like block
-        match = re.search(r'output\s*=\s*(\{.*?\})\s*$', response, re.DOTALL)
-        if not match:
-            match = re.search(r'\{.*\}', response, re.DOTALL)
-
-        if not match:
-            raise ValueError("No JSON object found")
-
-        json_str = match.group(1) if 'output' in match.group(0) else match.group(0)
-
-        # Try parsing directly
-        try:
-            return json.loads(json_str)
-        except json.JSONDecodeError:
-            # Try to salvage by trimming to the last closing brace
-            last_brace = json_str.rfind("}")
-            if last_brace != -1:
-                trimmed = json_str[:last_brace + 1]
-                return json.loads(trimmed)
-
-            raise  # Re-raise if no closing brace found
-
-    except Exception as e:
-        print("Failed to parse LLM response:", e)
-        print("Raw response:\n", response)
-        return {
-            "summary": "",
-            "characters": [],
-            "mood": "",
-            "cultural_refs": []
-        }
+from .utils import extract_json_block
 
 # Load the API token from .env
 load_dotenv()
