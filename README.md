@@ -61,8 +61,16 @@ ollama run mistral  # Make sure Mistral is pulled and running
 
 ### ▶️ Command-Line Example
 
+Run directly using Python:
+
 ```bash
 python3 -m scenesage.scenesage path/to/input.srt --output scenes.json --model mistralai/Mixtral-8x7B-Instruct-v0.1
+```
+
+Or use the Makefile shortcut (with environment variables and defaults pre-configured):
+
+```bash
+make hf-run SRT=path/to/input.srt OUT=scenes.json MODEL=mistralai/Mixtral-8x7B-Instruct-v0.1
 ```
 
 ---
