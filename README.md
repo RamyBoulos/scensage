@@ -60,19 +60,12 @@ ollama run mistral  # Make sure Mistral is pulled and running
 
 ### ▶️ Command-Line Example
 
-Run directly using Python:
+Run SceneSage directly using Python:
 
 ```bash
-python3 -m scenesage.scenesage path/to/input.srt --output scenes.json --model mistralai/Mixtral-8x7B-Instruct-v0.1
-```
-# For non-English output (experimental):
-python3 -m scenesage.scenesage path/to/input.srt --output scenes_de.json --model mistralai/Mixtral-8x7B-Instruct-v0.1 --lang German
-```
-
-Or use the Makefile shortcut (with environment variables and defaults pre-configured):
-
-```bash
-make hf-run SRT=path/to/input.srt OUT=scenes.json MODEL=mistralai/Mixtral-8x7B-Instruct-v0.1
+python3 -m scenesage.scenesage path/to/input.srt \
+  --output scenes.json \
+  --model mistralai/Mixtral-8x7B-Instruct-v0.1
 ```
 
 ---
@@ -106,14 +99,19 @@ Below are two annotated scenes from the demo input file `tests/data/plan9.srt`. 
 > These are two of the 20 annotated scenes stored in `scenes.json` after running the tool. Each scene includes summary, character extraction, mood classification, and cultural references (when found).
 
 ---
-### 🌐 Multilingual Support
 
-SceneSage can attempt to produce outputs in different languages using `--lang`. This is an experimental feature and works best with multilingual-capable models like Mixtral.
+### 🌍 Multilingual Output (Experimental)
 
----
-### 🌍 Multilingual Output Examples (Experimental)
+SceneSage supports experimental multilingual annotation using the `--lang` option. When specified, the tool attempts to generate scene annotations in the chosen language (e.g., `--lang German` or `--lang Italian`). This feature depends entirely on the capabilities of the selected LLM model (e.g., Mixtral supports many European languages).
 
-> SceneSage includes experimental multilingual support using the `--lang` option. When specified, the tool attempts to generate scene annotations in the chosen language (e.g., `--lang German`). The actual output depends on the capabilities of the selected LLM model.
+#### Example CLI usage:
+
+```bash
+python3 -m scenesage.scenesage path/to/input.srt \
+  --output scenes_de.json \
+  --model mistralai/Mixtral-8x7B-Instruct-v0.1 \
+  --lang German
+```
 
 #### 🇩🇪 German Output Example
 
@@ -137,7 +135,7 @@ SceneSage can attempt to produce outputs in different languages using `--lang`. 
 }
 ```
 
-> These examples show the tool's ability to generate scene annotations in non-English languages including cultural references when the model supports them. The `--lang` option is experimental and results may vary.
+> Note: Multilingual output is experimental. Accuracy and consistency vary depending on model support and quality of inference.
 
 ---
 
