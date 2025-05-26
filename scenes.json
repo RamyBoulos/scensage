@@ -4,42 +4,39 @@
     "end": "00:01:24,435",
     "transcript": "Greetings, my friend. We are all interested in the future, for that is where you and I are going to spend the rest of our lives. And remember my friend, future events such as these will affect you in the future. You are interested in the unknown, the mysterious, the unexplainable. That is why you are here. And now, for the first time, we are bringing to you the full story of what happened on that fateful day. We are giving you all the evidence, based only on the secret testimony of the miserable souls who survived this terrifying ordeal. The incidents, the places, my friend we cannot keep this a secret any longer. Let us punish the guilty, let us reward the innocent. My friend, can your heart stand the shocking facts about grave robbers from outer space?",
     "segmentation_mode": "llm",
-    "summary": "A mysterious and suspenseful introduction to an alien-themed investigation series, promising to reveal hidden truths and deliver justice.",
+    "summary": "Scene begins with a dramatic voiceover introducing a mysterious story involving extraterrestrial grave robbers and the future. The narrator promises to reveal the full story based on secret testimonies of survivors.",
     "characters": [
       "Narrator"
     ],
-    "mood": "Suspenseful",
-    "cultural_refs": [
-      "Space exploration and extraterrestrial life"
-    ]
+    "mood": "Suspenseful, Mysterious",
+    "cultural_refs": []
   },
   {
     "start": "00:02:45,849",
     "end": "00:03:28,272",
     "transcript": "All of us on this earth, know that there is a time to live, and that there is a time to die, yet death is always a shock to those left behind. It is even more of a shock, when death, the proud brother, comes suddenly without warning. Just at sundown, a small group, gathered in silent prayer around the newly-opened grave of the beloved wife of an elderly man. Sundown of the day, yet also the sundown of the old man's heart, for the shadows of grief clouded his very reason.",
     "segmentation_mode": "llm",
-    "summary": "Gathering at a funeral during sunset, the mourners silently pray around the grave of a deceased wife. The old husband is left in deep grief and disoriented by the sudden loss.",
+    "summary": "A small group gathers silently to pray at the newly opened grave of a deceased woman, shocking those left behind. The elderly husband is also grieving, as it seems this marks the 'sundown' of his own life.",
     "characters": [
-      "Elderly man",
-      "Small group of mourners"
+      "small group",
+      "the elderly man",
+      "the deceased wife"
     ],
-    "mood": "Mournful, somber, disorienting",
-    "cultural_refs": [
-      "The reference to death as a brother could be interpreted as a cultural or religious implication, but it's not explicitly stated and may vary based on the cultural context."
-    ]
+    "mood": "Sadness, Grief, Silence",
+    "cultural_refs": []
   },
   {
     "start": "00:03:40,899",
     "end": "00:03:44,939",
     "transcript": "The funeral over, the saddened group left the graveside.",
     "segmentation_mode": "llm",
-    "summary": "The funeral concludes, leaving behind a somber group.",
+    "summary": "The scene depicts a solemn gathering at a graveyard for a funeral. Following the service, the mourners leave the gravesite.",
     "characters": [
-      "Character A",
-      "Character B",
-      "Character C"
+      "Main character",
+      "Family members",
+      "Friends of main character"
     ],
-    "mood": "sad",
+    "mood": "Sad",
     "cultural_refs": []
   },
   {
@@ -47,16 +44,17 @@
     "end": "00:04:53,221",
     "transcript": "It was when the gravediggers started their task that strange things began to take place. Fifteen to four. Yup, right on schedule. There's the ol' San Fernando Valley out there now. -You better radio in for landing instructions, Danny. -Right, Jeff. Burbank Tower, this is American Flight 812, over. Wouldn't surprise me any if  he's asleep this time of the morning. American Flight 812, this is Burbank Tower. If I were asleep you'd never get on the ground! Your case maybe you'd be up there for good. Over. You got me that time, Mac. This American Flight 812 requesting -",
     "segmentation_mode": "llm",
-    "summary": "Strange events occur as gravediggers work while two air traffic controllers exchange banter about an incoming flight and one of them faking sleep on the job.",
+    "summary": "Gravediggers begin their work at a cemetery as two pilots engage in a light-hearted radio conversation with air traffic control, referencing Burbank Airport (San Fernando Valley) and the possibility of one pilot sleeping.",
     "characters": [
-      "Gravedigger (Unspecified)",
-      "Danny (Air Traffic Controller)",
-      "Jeff (Air Traffic Controller)"
+      "Gravedigger",
+      "Danny (pilot)",
+      "Jeff (pilot)",
+      "Mac (air traffic control)"
     ],
-    "mood": "Lighthearted, slightly tense",
+    "mood": "lighthearted, humorous",
     "cultural_refs": [
-      "San Fernando Valley",
-      "Burbank Tower (air traffic control tower in Burbank, California)"
+      "aviation",
+      "geographical location - San Fernando Valley"
     ]
   },
   {
@@ -64,50 +62,53 @@
     "end": "00:05:43,523",
     "transcript": "Burbank Tower to American Flight 812, over. Burbank Tower to American Flight 812, over. Holy mackeral. -Burbank Tower to American Flight 812, are you in trouble? -Trouble ? -Take a look for yourself. -What in the world... -That's nothing from this world. Burbank Tower to American Flight 812, are you in trouble? Are you in trouble? -Mayday, mayday. Stand by, Burbank Tower. -Do you suppose the passengers saw it? I doubt it. Most of them are asleep. But it was quite a jolt, Jeff. I'll check. Good. We'll get them ready for landing. Keep it quiet until we get instructions. -Right. -American Flight 812 reporting to Burbank Tower, over.",
     "segmentation_mode": "llm",
-    "summary": "Pilot of American Flight 812 reports a mysterious and alarming sight, possibly an UFO, causing turbulence. They declare a mayday and prepare for landing.",
+    "summary": "Pilot of American Flight 812 reports a strange and unexpected event during flight, possibly an unidentified flying object (UFO), causing turbulence. The tower advises them to prepare for landing while keeping the situation quiet.",
     "characters": [
       "Burbank Tower",
-      "American Flight 812 Pilot (Jeff)"
+      "American Flight 812 Pilot"
     ],
-    "mood": "Tense, Alarmed, Mysterious",
-    "cultural_refs": []
+    "mood": "Tense, curious, mysterious",
+    "cultural_refs": [
+      "Air travel",
+      "UFOs"
+    ]
   },
   {
     "start": "00:06:04,666",
     "end": "00:06:28,169",
     "transcript": "(buzzing noise) -D'you hear anything ? -I thought I did. Don't like hearin' noises. 'Specially when there ain't s'posed to be any. -Yeah, sorta spooky-like. -Maybe we're getting' old. -Whatever it is it's gone now. -That's the best thing for us too. Gone. -Yeah, let's go.",
     "segmentation_mode": "llm",
-    "summary": "Characters hear an unusual noise and discuss its origin. They seem worried but also attempt to dismiss the incident.",
+    "summary": "Two characters discuss an unusual noise they heard, expressing a sense of unease and concern. They decide to move on.",
     "characters": [
-      "D",
-      "I"
+      "Character 1",
+      "Character 2"
     ],
-    "mood": "anxious, uneasy",
-    "cultural_refs": ""
+    "mood": "anxious",
+    "cultural_refs": []
   },
   {
     "start": "00:06:53,440",
     "end": "00:06:55,234",
     "transcript": "(The two men scream.)",
     "segmentation_mode": "llm",
-    "summary": "Two men are in distress.",
+    "summary": "A distressing scene of two men in an emergency situation, evident by their screams.",
     "characters": [
-      "Character1",
-      "Character2"
+      "Man 1",
+      "Man 2"
     ],
     "mood": "Tense",
-    "cultural_refs": null
+    "cultural_refs": ""
   },
   {
     "start": "00:07:02,007",
     "end": "00:07:09,280",
     "transcript": "The grief of his wife's death became greater and greater agony.",
     "segmentation_mode": "llm",
-    "summary": "The protagonist is shown grappling intensely with the sorrow of his deceased wife.",
+    "summary": "The main character grapples intensely with the loss of his wife.",
     "characters": [
-      "Protagonist"
+      "Main Character"
     ],
-    "mood": "Sad, mournful",
+    "mood": "Sadness, Agony",
     "cultural_refs": []
   },
   {
@@ -115,11 +116,12 @@
     "end": "00:07:30,492",
     "transcript": "The home they had so long shared together, became a tomb. A sweet memory of her joyous living. The sky to which she had once looked, was now only a covering for her dead body.",
     "segmentation_mode": "llm",
-    "summary": "A somber scene where the previously lively home has turned into a place of mourning, symbolizing the death of a character. The sky, once associated with life and hope, is now merely a funeral shroud.",
+    "summary": "The scene depicts the empty home of a deceased woman, highlighting the stark contrast between her former vibrant life and the current state of solitude and silence.",
     "characters": [
-      "She"
+      "She",
+      "Unspecified family members or friends (off-screen)"
     ],
-    "mood": "Sad",
+    "mood": "Melancholic, quiet, reflective",
     "cultural_refs": []
   },
   {
@@ -127,15 +129,11 @@
     "end": "00:07:55,340",
     "transcript": "The ever-beautiful flowers she had planted with her own hands, became nothing more than the lost roses of her cheeks.",
     "segmentation_mode": "llm",
-    "summary": "The scene shows a woman mourning over the wilting flowers she once lovingly tended.",
+    "summary": "The scene depicts a woman mourning over the decay of flowers she had planted herself, symbolizing her own emotional decay, perhaps due to loss or heartbreak.",
     "characters": [
-      "Woman"
+      "woman"
     ],
-    "mood": [
-      "Sadness",
-      "Grief",
-      "Melancholy"
-    ],
+    "mood": "sad",
     "cultural_refs": []
   },
   {
@@ -143,11 +141,15 @@
     "end": "00:08:17,904",
     "transcript": "Confused by his great loss, the old man left that home, never to return again. (tires screeching; the man cries out in pain) (ambulance horn)",
     "segmentation_mode": "llm",
-    "summary": "The old man, distraught over a great loss, leaves his home for good, followed by the sound of screeching tires and his own pained cry. An ambulance's horn is heard.",
+    "summary": "The old man, grieving from a great loss, departs forever from his home, accompanied by distressing sounds of tire screeching and his own cries. An ambulance siren adds to the scene.",
     "characters": [
       "The old man"
     ],
-    "mood": "Sad",
+    "mood": [
+      "Sadness",
+      "Regret",
+      "Despair"
+    ],
     "cultural_refs": []
   },
   {
@@ -155,14 +157,14 @@
     "end": "00:08:49,481",
     "transcript": "At the funeral of the old man, unknown to his mourners, his dead wife was watching. -First his wife, then he. -Tragic. -Tell me something. Why was his wife buried in the ground, and he sealed in a crypt? -Something to do with family tradition. A superstition of some sort. Well, it's getting' dark. Let's be on our way.",
     "segmentation_mode": "llm",
-    "summary": "At a funeral for an old man, his dead wife secretly observes the proceedings and is later joined by him in death. The scene is tragic.",
+    "summary": "At the funeral of an old man, his dead wife secretly watches. The scene is tragic as first his wife and then he are mourned. The conversation suggests a family tradition or superstition regarding burial methods.",
     "characters": [
-      "the old man",
+      "old man",
       "his dead wife"
     ],
     "mood": "tragic",
     "cultural_refs": [
-      "family tradition involving superstitions related to burial methods"
+      "family tradition or superstition related to burial methods"
     ]
   },
   {
@@ -170,12 +172,12 @@
     "end": "00:09:00,363",
     "transcript": "Then, as two of his mourners left his final resting place… (screams) Look!",
     "segmentation_mode": "llm",
-    "summary": "A sudden, unexplained scream is heard at the gravesite of a deceased individual, causing consternation among the mourners.",
+    "summary": "A sudden scream is heard when two mourners depart from a deceased character's grave.",
     "characters": [
-      "the deceased",
-      "two mourners"
+      "Deceased character",
+      "Two mourners"
     ],
-    "mood": "tense",
+    "mood": "Tense, eerie",
     "cultural_refs": []
   },
   {
@@ -183,13 +185,12 @@
     "end": "00:10:19,379",
     "transcript": "Minutes later, the police, led by Inspector Daniel Clay, arrived at the scene. -Who found him ? -The man and girl. -Medical, uh, examiner been 'round yet? -Just left. The morgue wagon oughta be along most any time. -You get their statement ? Yeah, much as we could. They're pretty scared. -Finding a mess like this oughta make anyone frightened. Have one of the boys take the guy and the girl back to town. You take charge. -Okay Inspector. What're you gonna do? -Look around a little. -Pretty dark out there. Once you get beyond the range of those lights you won't be able to see your hand in front of your face. -I will get one of the flashlights from the patrol car. -You be careful Clay. -I'm a big boy now, Johnny.",
     "segmentation_mode": "llm",
-    "summary": "Inspector Daniel Clay arrives at the crime scene and takes charge. The victim has been examined by the medical examiner and is awaiting transport to the morgue. The two witnesses, a man and a girl, are scared and have given their statements. Inspector Clay plans to search the area with one of the flashlights.",
+    "summary": "Inspector Daniel Clay arrives at a crime scene and takes charge. He orders someone to take the two witnesses back to town. He intends to examine the area and plans to use a flashlight.",
     "characters": [
       "Inspector Daniel Clay",
-      "The man",
-      "The girl"
+      "The man and girl"
     ],
-    "mood": "Suspenseful, somber",
+    "mood": "Tense",
     "cultural_refs": []
   },
   {
@@ -197,12 +198,12 @@
     "end": "00:11:48,267",
     "transcript": "Looks like a bobcat tore into them. Yeah. Say Lieutenant, d'you get that funny odour ? -How could I miss it ? Oh, that'll be the morgue wagon now. -That's the fifth siren in the last hour. -Oh, something's happened down at the cemetery. A lot of police cars and lights. I stopped but I didn't see anything. Oh well, whatever it is, the morning paper will carry the whole story.",
     "segmentation_mode": "llm",
-    "summary": "Characters discuss a potential crime scene at a local cemetery, with one character mentioning a strong odor possibly from the morgue wagon. The scene ends with speculation that the event will be covered in the newspaper.",
+    "summary": "Characters discuss a possible crime scene (cemetery) where a body might have been found, indicated by the presence of multiple police cars and sirens.",
     "characters": [
       "Lieutenant",
-      "Character 1"
+      "Another character"
     ],
-    "mood": "Suspicious, Casual",
+    "mood": "Concerned",
     "cultural_refs": []
   },
   {
@@ -210,12 +211,12 @@
     "end": "00:12:24,226",
     "transcript": "You seem to still be up there somewhere. Maybe I am. I don't think I've ever seen you in this mood before. I guess it's because I've never been in this mood before. Something about your flight ? Yeah. What happened, Jeff ?",
     "segmentation_mode": "llm",
-    "summary": "Two characters, presumably friends, are having a conversation at an undefined location and time. One of the characters seems distressed and is opening up about their emotional state, to which the other character reacts with curiosity and concern.",
+    "summary": "Two characters are having a conversation, one expressing concern about the other's mood which is seemingly different and unfamiliar. The second character may have experienced something significant (flight).",
     "characters": [
-      "Character1",
+      "Character 1",
       "Jeff"
     ],
-    "mood": "Emotional, Introspective, Curious, Concerned",
+    "mood": "Concerned, Mysterious",
     "cultural_refs": []
   },
   {
@@ -223,16 +224,15 @@
     "end": "00:13:28,643",
     "transcript": "-I saw a flying saucer. -A saucer? You mean the kind from up there? -Yeah, or its counterpart. It was shaped like a huge cigar. Dan either saw it too. When it passed over, the whole compartment lighted up with a blinding glare. Then there was a tremendous wind that practically knocked us off our course. -Well did you report it? -Yeah, I radioed in immediately and they said well keep it quiet until you land. Then as soon as we landed, big army brass grabbed us and made us swear to secrecy about the whole thing. Oh, it burns me up. These things have been seen for years. They're here, it's a fact. And the public oughta know about it. -There must be something more you can do about it. Oh no there isn't. Oh, but what's the use of making a fuss. But last night I saw a flying object that couldn't possibly have been from this planet. But I can't say a word. I'm muzzled by army brass! I can't even admit I saw the thing! (loud whooshing noise)",
     "segmentation_mode": "llm",
-    "summary": "Character expresses frustration over seeing a UFO and being silenced by military authorities, unable to share their experience with the public.",
+    "summary": "A character witnesses a UFO and is told to keep it secret by military officials, expressing frustration about the situation.",
     "characters": [
-      "Speaker",
-      "Interlocutor"
+      "Character1",
+      "Military Official"
     ],
-    "mood": "Angry, Frustrated, Constrained",
+    "mood": "Frustrated, anxious, secretive",
     "cultural_refs": [
-      "UFOs",
-      "Military Secrecy",
-      "Aliens"
+      "UFO sightings",
+      "Military secrecy"
     ]
   },
   {
@@ -240,12 +240,11 @@
     "end": "00:13:53,355",
     "transcript": "(another whooshing noise)",
     "segmentation_mode": "llm",
-    "summary": "A high-speed car chase scene",
+    "summary": "Quick panning shot of a futuristic cityscape, followed by a close-up of the protagonist's face as they receive a distress call on their communicator.",
     "characters": [
-      "Hero Protagonist",
-      "Villain Antagonist"
+      "Protagonist"
     ],
-    "mood": "tense, thrilling, suspenseful",
+    "mood": "Tense",
     "cultural_refs": []
   },
   {
@@ -253,19 +252,19 @@
     "end": "00:14:37,760",
     "transcript": "(door creaks open)",
     "segmentation_mode": "llm",
-    "summary": "A character quietly enters a room, causing the door to creak.",
+    "summary": "(Door creaks open) - A mysterious figure enters a dimly-lit room carrying an antique box",
     "characters": [
-      "Character"
+      "Mysterious Figure"
     ],
-    "mood": "Tense",
-    "cultural_refs": ""
+    "mood": "Tense, suspenseful",
+    "cultural_refs": []
   },
   {
     "start": "00:15:29,577",
     "end": "00:15:43,921",
     "transcript": "Sounds like Clay's in trouble. (Gun is empty.) (Clay screams and chokes.) Bet that apparition we saw had something to do with it. Come on.",
     "segmentation_mode": "llm",
-    "summary": "Character Clay encounters a supernatural entity, resulting in distress.",
+    "summary": "The protagonist, Clay, encounters a supernatural entity which causes him distress, indicated by his screams and choking sounds.",
     "characters": [
       "Clay"
     ],

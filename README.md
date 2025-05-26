@@ -75,6 +75,36 @@ make hf-run SRT=path/to/input.srt OUT=scenes.json MODEL=mistralai/Mixtral-8x7B-I
 
 ---
 
+### 📄 Sample Output (from `scenes.json` and debug prints)
+
+Below are two annotated scenes from the demo input file `tests/data/plan9.srt`. These were generated during a local run using Mistral via Ollama. You can also see them echoed in the `RAW MISTRAL RESPONSE` debug printouts.
+
+#### 🎬 Scene 1 — Opening Narration (Voiceover)
+
+```json
+{
+  "summary": "Scene begins with a dramatic voiceover introducing a mysterious story involving extraterrestrial grave robbers and the future. The narrator promises to reveal the full story based on secret testimonies of survivors.",
+  "characters": ["Narrator"],
+  "mood": "Suspenseful, Mysterious",
+  "cultural_refs": []
+}
+```
+
+#### ✈️ Scene 4 — Cemetery + Pilot Banter
+
+```json
+{
+  "summary": "Gravediggers begin their work at a cemetery as two pilots engage in a light-hearted radio conversation with air traffic control, referencing Burbank Airport (San Fernando Valley) and the possibility of one pilot sleeping.",
+  "characters": ["Gravedigger", "Danny (pilot)", "Jeff (pilot)", "Mac (air traffic control)"],
+  "mood": "lighthearted, humorous",
+  "cultural_refs": ["aviation", "geographical location - San Fernando Valley"]
+}
+```
+
+> These are two of the 20 annotated scenes stored in `scenes.json` after running the tool. Each scene includes summary, character extraction, mood classification, and cultural references (when found).
+
+---
+
 ### 🛠️ Makefile Shortcuts
 
 The Makefile includes convenient commands for different use cases.
