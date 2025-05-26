@@ -7,7 +7,7 @@ SRT        := tests/data/plan9.srt
 LIMIT      := 20
 OUT        := scenes.json
 MODEL      := mistralai/Mixtral-8x7B-Instruct-v0.1
-LANG      := English
+LANG       := English
 
 # ===[ TESTING & QUALITY ]====================================================
 .PHONY: test
