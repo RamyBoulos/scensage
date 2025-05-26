@@ -17,7 +17,7 @@ if not HF_TOKEN:
 # Initialize the Hugging Face client
 client = InferenceClient(token=HF_TOKEN)
 
-def analyze_scene(transcript: str, model: str = None, llm_call=None) -> dict:
+def analyze_scene(transcript: str, model: str = None, llm_call=None, language: str = "English") -> dict:
     """
     Uses local model if USE_LOCAL is set to "mistral" (meaning local Mistral via Ollama), 
     otherwise falls back to Hugging Face API with the specified model (default "mistralai/Mistral-7B-Instruct-v0.1").
@@ -36,29 +36,29 @@ def analyze_scene(transcript: str, model: str = None, llm_call=None) -> dict:
     if not model or "mistral" not in model.lower():
         print(f"[WARNING] The specified model name '{model}' may not be correct or supported. Please verify the model name.")
 
-    def build_prompt(t: str) -> str:
+    def build_prompt(t: str, language: str = "English") -> str:
         return f"""
-        You are a film scene analyst. Given the following transcript, respond with a **strict JSON object only** that includes:
-        - "summary": a one-sentence summary of the scene
-        - "characters": a list of mentioned characters (use real or generic names if unclear)
-        - "mood": the emotional tone of the scene (e.g. sad, tense, hopeful)
-        - "cultural_refs": up to 3 relevant cultural references or an empty list
+You are a film scene analyst. Given the following transcript, respond with a **strict JSON object only** in {language} that includes:
+- "summary": a one-sentence summary of the scene
+- "characters": a list of mentioned characters (use real or generic names if unclear)
+- "mood": the emotional tone of the scene (e.g. sad, tense, hopeful)
+- "cultural_refs": up to 3 relevant cultural references or an empty list
 
-        Respond ONLY with valid JSON. Do NOT include explanations, markdown, or extra text.
+Respond ONLY with valid JSON in {language}. Do NOT include explanations, markdown, or extra text.
 
-        Transcript:
-        {t}
+Transcript:
+{t}
 
-        Example response format:
-        {{
-          "summary": "A narrator introduces the story.",
-          "characters": ["Narrator"],
-          "mood": "mysterious",
-          "cultural_refs": []
-        }}
-        """
+Example response format:
+{{
+  "summary": "A narrator introduces the story.",
+  "characters": ["Narrator"],
+  "mood": "mysterious",
+  "cultural_refs": []
+}}
+"""
 
-    prompt = build_prompt(transcript)
+    prompt = build_prompt(transcript, language=language)
 
     if llm_call:
         response = llm_call(prompt.strip())
@@ -76,15 +76,15 @@ def analyze_scene(transcript: str, model: str = None, llm_call=None) -> dict:
     if not parsed["summary"]:
         # Retry with simplified prompt
         fallback_prompt = f"""
-        Return only valid JSON with:
-        - summary
-        - characters
-        - mood
-        - cultural_refs
+Return only valid JSON in {language} with:
+- summary
+- characters
+- mood
+- cultural_refs
 
-        Transcript:
-        {transcript}
-        """
+Transcript:
+{transcript}
+"""
 
         if llm_call:
             response = llm_call(fallback_prompt.strip())

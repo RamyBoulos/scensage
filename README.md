@@ -1,5 +1,3 @@
-
-
 # SceneSage
 
 **SceneSage** is a Python-based command-line tool for enriching video subtitles with AI-generated scene annotations. It processes `.srt` subtitle files, segments them into scenes, and uses Large Language Models (LLMs) to annotate each scene with a summary, characters, mood, and cultural references.
@@ -14,6 +12,7 @@ Repository: [github.com/RamyBoulos/scensage](https://github.com/RamyBoulos/scens
 
 - 🎬 **Scene Segmentation** – Groups subtitles into coherent scenes using LLM or time-gap strategy.
 - 🤖 **LLM Annotation** – Adds summaries, character info, mood, and cultural references to each scene.
+- 🌍 **Multilingual Output (Experimental)** – Optionally generate annotations in other languages using `--lang`. Requires multilingual-capable models.
 - 🔌 **Hugging Face & Ollama** – Use Hugging Face models (default) or local Mistral via Ollama.
 - 🐳 **Docker Support** – Run SceneSage in a containerized environment.
 - 🛠️ **Makefile Shortcuts** – Convenient commands for testing and running locally or in Docker.
@@ -66,6 +65,9 @@ Run directly using Python:
 ```bash
 python3 -m scenesage.scenesage path/to/input.srt --output scenes.json --model mistralai/Mixtral-8x7B-Instruct-v0.1
 ```
+# For non-English output (experimental):
+python3 -m scenesage.scenesage path/to/input.srt --output scenes_de.json --model mistralai/Mixtral-8x7B-Instruct-v0.1 --lang German
+```
 
 Or use the Makefile shortcut (with environment variables and defaults pre-configured):
 
@@ -102,6 +104,40 @@ Below are two annotated scenes from the demo input file `tests/data/plan9.srt`. 
 ```
 
 > These are two of the 20 annotated scenes stored in `scenes.json` after running the tool. Each scene includes summary, character extraction, mood classification, and cultural references (when found).
+
+---
+### 🌐 Multilingual Support
+
+SceneSage can attempt to produce outputs in different languages using `--lang`. This is an experimental feature and works best with multilingual-capable models like Mixtral.
+
+---
+### 🌍 Multilingual Output Examples (Experimental)
+
+> SceneSage includes experimental multilingual support using the `--lang` option. When specified, the tool attempts to generate scene annotations in the chosen language (e.g., `--lang German`). The actual output depends on the capabilities of the selected LLM model.
+
+#### 🇩🇪 German Output Example
+
+```json
+{
+  "summary": "Die Flugkontrolle von Burbank Tower erhält einen Notruf von American Flight 812.",
+  "characters": ["Burbank Tower", "American Flight 812"],
+  "mood": "angespannt",
+  "cultural_refs": ["UFOs", "Flugsicherheit"]
+}
+```
+
+#### 🇮🇹 Italian Output Example
+
+```json
+{
+  "summary": "Il commissario guarda fuori dalla finestra e riflette sulla città piovosa di Roma.",
+  "characters": ["Commissario"],
+  "mood": "malinconico",
+  "cultural_refs": ["Roma", "polizia italiana"]
+}
+```
+
+> These examples show the tool's ability to generate scene annotations in non-English languages including cultural references when the model supports them. The `--lang` option is experimental and results may vary.
 
 ---
 

@@ -22,13 +22,13 @@ def is_ollama_running() -> bool:
     except Exception:
         return False
 
-def analyze_scene_with_mistral(transcript: str) -> dict:
+def analyze_scene_with_mistral(transcript: str, language: str = "English") -> dict:
     """
     Uses Ollama's local API to analyze a scene using the quantized mistral model.
     Returns a structured JSON object or fallback values.
     """
     prompt = f"""
-    You are a film scene analyst. Analyze the following scene and return only a valid JSON object with the following keys:
+    You are a film scene analyst. Analyze the following scene and respond in {language}. Return only a valid JSON object with the following keys:
     "summary", "characters", "mood", "cultural_refs".
     Your response must start with '{{' and end with '}}'. Do not include explanations, formatting, or markdown.
 

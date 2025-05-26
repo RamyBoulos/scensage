@@ -7,6 +7,7 @@ SRT        := tests/data/plan9.srt
 LIMIT      := 20
 OUT        := scenes.json
 MODEL      := mistralai/Mixtral-8x7B-Instruct-v0.1
+LANG      := English
 
 # ===[ TESTING & QUALITY ]====================================================
 .PHONY: test
@@ -16,7 +17,7 @@ test:
 # ===[ LOCAL EXECUTION ]======================================================
 .PHONY: run
 run:
-	USE_LOCAL=$${USE_LOCAL:-none} python3 -m scenesage.scenesage $(SRT) --limit $(LIMIT) --output $(OUT) --model $(MODEL)
+	USE_LOCAL=$${USE_LOCAL:-none} python3 -m scenesage.scenesage $(SRT) --limit $(LIMIT) --output $(OUT) --model $(MODEL) --lang $(LANG)
 
 # ===[ SHORTCUTS: LOCAL/HF RUNS ]=============================================
 .PHONY: hf-run mistral-gap mistral-llm mistral-run
@@ -29,17 +30,17 @@ mistral-run:   # Run with local Mistral via Ollama (USE_LOCAL=mistral)
 # ===[ ADVANCED: SEGMENTATION STRATEGIES ]====================================
 .PHONY: run-llm run-gap
 run-llm:   # LLM segmentation, HF inference
-	USE_LOCAL=none python3 -m scenesage.scenesage $(SRT) --limit $(LIMIT) --output $(OUT) --strategy llm --model $(MODEL)
+	USE_LOCAL=none python3 -m scenesage.scenesage $(SRT) --limit $(LIMIT) --output $(OUT) --strategy llm --model $(MODEL) --lang $(LANG)
 
 run-gap:   # GAP segmentation, HF inference
-	USE_LOCAL=none python3 -m scenesage.scenesage $(SRT) --limit $(LIMIT) --output $(OUT) --strategy gap --model $(MODEL)
+	USE_LOCAL=none python3 -m scenesage.scenesage $(SRT) --limit $(LIMIT) --output $(OUT) --strategy gap --model $(MODEL) --lang $(LANG)
 
 .PHONY: mistral-gap mistral-llm
 mistral-llm:   # LLM segmentation, local Mistral
-	USE_LOCAL=mistral python3 -m scenesage.scenesage $(SRT) --limit $(LIMIT) --output $(OUT) --strategy llm --model $(MODEL)
+	USE_LOCAL=mistral python3 -m scenesage.scenesage $(SRT) --limit $(LIMIT) --output $(OUT) --strategy llm --model $(MODEL) --lang $(LANG)
 
 mistral-gap:   # GAP segmentation, local Mistral
-	USE_LOCAL=mistral python3 -m scenesage.scenesage $(SRT) --limit $(LIMIT) --output $(OUT) --strategy gap --model $(MODEL)
+	USE_LOCAL=mistral python3 -m scenesage.scenesage $(SRT) --limit $(LIMIT) --output $(OUT) --strategy gap --model $(MODEL) --lang $(LANG)
 
 # ===[ DOCKER WORKFLOWS ]=====================================================
 .PHONY: docker-build docker-mistral-run docker-hf-run
@@ -47,10 +48,10 @@ docker-build:    # Build Docker image
 	docker build -t scenesage .
 
 docker-mistral-run:    # Run in Docker with local Mistral (Ollama must be running outside Docker)
-	docker run --rm -v $(shell pwd):/app -w /app -e USE_LOCAL=mistral scenesage python3 -m scenesage.scenesage $(SRT) --limit $(LIMIT) --output $(OUT) --model $(MODEL)
+	docker run --rm -v $(shell pwd):/app -w /app -e USE_LOCAL=mistral scenesage python3 -m scenesage.scenesage $(SRT) --limit $(LIMIT) --output $(OUT) --model $(MODEL) --lang $(LANG)
 
 docker-hf-run:    # Run in Docker with Hugging Face API
-	docker run --rm -v $(shell pwd):/app -w /app -e USE_LOCAL=none scenesage python3 -m scenesage.scenesage $(SRT) --limit $(LIMIT) --output $(OUT) --model $(MODEL)
+	docker run --rm -v $(shell pwd):/app -w /app -e USE_LOCAL=none scenesage python3 -m scenesage.scenesage $(SRT) --limit $(LIMIT) --output $(OUT) --model $(MODEL) --lang $(LANG)
 
 # ===[ HELP ]==================================================================
 .PHONY: help
@@ -78,6 +79,9 @@ help:
 	@echo "  LIMIT   Number of scenes to process [$(LIMIT)]"
 	@echo "  OUT     Output file [$(OUT)]"
 	@echo "  MODEL   Model for annotation [$(MODEL)]"
+	@echo "  LANG    Output language (e.g., English, Italian, German) [$(LANG)]"
+	@echo ""
+	@echo "Note: Language support depends on the multilingual capabilities of the selected LLM model."
 	@echo ""
 	@echo "Set USE_LOCAL=mistral to use local Ollama, or USE_LOCAL=none (default) for Hugging Face API."
 	@echo ""

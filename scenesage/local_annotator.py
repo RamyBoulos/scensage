@@ -1,8 +1,8 @@
 import requests
 
-def analyze_scene_locally(transcript: str) -> dict:
+def analyze_scene_locally(transcript: str, language: str = "English") -> dict:
     prompt = f"""
-    Summarize this scene and extract structured details in JSON format.
+    Summarize this scene and extract structured details in JSON format. Respond in {language} only.
 
     Transcript:
     {transcript}

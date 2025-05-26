@@ -22,6 +22,7 @@ def main():
         choices=["llm", "gap"],
         help="Scene segmentation strategy: 'llm' for LLM-based or 'gap' for time-based"
     )
+    parser.add_argument("--lang", default="English", help="Language for annotation output (default: English)")
 
     args = parser.parse_args()
 
@@ -40,7 +41,7 @@ def main():
     annotated_scenes = []
     for i, scene in enumerate(tqdm(scenes, desc="Analyzing scenes"), 1):
         print(f"Analyzing scene {i}/{len(scenes)}")
-        annotations = analyze_scene(scene["transcript"], model=args.model)
+        annotations = analyze_scene(scene["transcript"], model=args.model, language=args.lang)
         annotated_scene = {
             "start": scene["start"],
             "end": scene["end"],
